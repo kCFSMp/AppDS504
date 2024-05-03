@@ -4,7 +4,7 @@
  */
 package CasosGuia2;
 
-import Clases.ConexionMySQL;
+import fuente.ConexionMySQL;
 // import Clases.ConexionSQL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -33,9 +33,9 @@ public class AppBDCaso1 {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DecimalFormat df = new DecimalFormat("#,##0.00");
         
-        Connection cnx = null;
-        Statement stm = null;
-        ResultSet rs = null;
+        Connection cnx = null;  //Conexion
+        Statement stm = null;   // Sentencia (con SQL)
+        ResultSet rs = null;    // Resultados
         
         try {
             cnx = cn.Conectar();

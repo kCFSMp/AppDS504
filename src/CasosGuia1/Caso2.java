@@ -4,11 +4,16 @@
  */
 package CasosGuia1;
 
+import fuente.Vector;
+
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -18,7 +23,7 @@ import javax.swing.JTextField;
  *
  * @author Alumno-ETI
  */
-public class Caso2 extends JFrame{
+public class Caso2 extends JInternalFrame implements ActionListener{
     //Atributos de clase (Controller)
     private JLabel lbl_texto1, lbl_texto2, lbl_texto3, lbl_texto4, lbl_titulo;
     private JTextField txt_valor_x, txt_valor_y;
@@ -37,10 +42,11 @@ public class Caso2 extends JFrame{
     private void Configurar() {
         this.setSize(700, 400);
         this.setTitle("DS - SENATI: ");
-        this.setLocationRelativeTo(null);
+        //this.setLocationRelativeTo(null);
         this.setLayout(null);
         this.setResizable(false);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     
     // Metodo para configurar los controles
@@ -89,17 +95,20 @@ public class Caso2 extends JFrame{
         txt_reporte.setFont(new Font("Calibri", Font.BOLD, 14));
         txt_reporte.setEditable(false);
         
-        //scr_reporte = new JScrollPane();
-        //scr_reporte.setFont(new Font("Calibri", Font.BOLD, 14));
-        //scr_reporte.setEditable(false);
+         scr_reporte = new JScrollPane(txt_reporte,
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scr_reporte.setBounds(34, 140, 300, 60);
         
         btn_aceptar = new JButton();
         btn_aceptar.setText("Aceptar");
         btn_aceptar.setBounds(25, 230, 100, 25);
+        btn_aceptar.addActionListener(this);
         
         btn_cerrar = new JButton();
         btn_cerrar.setText("CERRAR");
         btn_cerrar.setBounds(150, 230, 100, 25);
+        btn_cerrar.addActionListener(this);
         // 2.   Agregar el control al ancahoJFrame
         this.add(lbl_titulo);
         this.add(lbl_texto1);
@@ -110,7 +119,32 @@ public class Caso2 extends JFrame{
         this.add(btn_aceptar);
         this.add(btn_cerrar);
         this.add(lbl_texto4);
-        
+        this.add(scr_reporte);
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == btn_aceptar) {
+            //Validar
+            
+            Vector vc = new Vector();
+            
+            float vx = Float.parseFloat(txt_valor_x.getText());
+            float vy = Float.parseFloat(txt_valor_y.getText());
+            
+            vc.setValor_x(vx);
+            vc.setValor_y(vy);
+            
+            String rpta = "";
+            rpta += "Vector......:" + vc.MostrarVector() + "\n";
+            rpta += "Módulo......:" + vc.CalucularModulo() + "\n";
+            rpta += "Angulo......:" + vc.CalcularAngulo();
+            
+            txt_reporte.setText(rpta);
+            
+        }else if(e.getSource()== btn_cerrar){
+            dispose();
+        }
     }
     
     public static void main(String[] args) {

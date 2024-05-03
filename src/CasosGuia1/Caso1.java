@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -17,7 +18,7 @@ import javax.swing.JTextField;
  *
  * @author Alumno-ETI
  */
-public class Caso1 extends JFrame implements ActionListener {
+public class Caso1 extends JInternalFrame implements ActionListener {
 
     //Atributos de clase (Controller)
     private JLabel lbl_texto1;
@@ -38,10 +39,11 @@ public class Caso1 extends JFrame implements ActionListener {
     private void Configurar() {
         this.setSize(400, 300);
         this.setTitle("DS - SENATI");
-        this.setLocationRelativeTo(null);
+        //this.setLocationRelativeTo(null);
         this.setLayout(null);
         this.setResizable(false);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     // Metodo para configurar los controles

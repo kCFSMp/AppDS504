@@ -4,7 +4,7 @@
  */
 package CasosGuia2;
 
-import Clases.ConexionSQL;
+import fuente.ConexionMySQL;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -38,7 +38,7 @@ public class AppBDCaso2 extends JFrame {
     
     private void ConfigurarVentana(){
         this.setTitle("Lista de Personal");
-        this.setSize(600, 300);
+        this.setSize(900, 300);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }   
@@ -49,7 +49,7 @@ public class AppBDCaso2 extends JFrame {
         modelo_tb = new DefaultTableModel();
         tb_persona1.setModel(modelo_tb);
         
-        ConexionSQL cn = new ConexionSQL();
+        ConexionMySQL cn = new ConexionMySQL();
         
         Connection cnx = null;
         Statement stm = null;
@@ -59,7 +59,7 @@ public class AppBDCaso2 extends JFrame {
             cnx = cn.Conectar();
             stm = cnx.createStatement();
             
-            rs = stm.executeQuery("sp_ListarPersona1");
+            rs = stm.executeQuery("select * from tb_persona1");
             
             int nc = rs.getMetaData().getColumnCount();
             
@@ -97,10 +97,15 @@ public class AppBDCaso2 extends JFrame {
         arr_col.getColumn(0).setCellRenderer(alinear);
         arr_col.getColumn(0).setPreferredWidth(120);
         
-        arr_col.getColumn(1).setPreferredWidth(300);
+        arr_col.getColumn(1).setPreferredWidth(110);
         
-        arr_col.getColumn(2).setCellRenderer(alinear);
-        arr_col.getColumn(2).setPreferredWidth(180);
+        arr_col.getColumn(2).setPreferredWidth(110);
+        
+        arr_col.getColumn(3).setPreferredWidth(110);
+        arr_col.getColumn(4).setCellRenderer(alinear);
+        
+        arr_col.getColumn(5).setPreferredWidth(200);
+        arr_col.getColumn(5).setCellRenderer(alinear);
         
         scp = new JScrollPane(tb_persona1);
         
