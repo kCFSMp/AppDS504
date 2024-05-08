@@ -310,6 +310,8 @@ public class AppPersonal extends JFrame implements ActionListener {
             
             if (gen.equals("M")) rbt_genero_m.setSelected(true);
             if (gen.equals("F")) rbt_genero_f.setSelected(true);
+            if (gen.equals("m")) rbt_genero_m.setSelected(true);
+            if (gen.equals("f")) rbt_genero_f.setSelected(true);
             
             dc_fn.setDate(fn);
             
@@ -356,9 +358,10 @@ public class AppPersonal extends JFrame implements ActionListener {
             }
             
             if (rbt_genero_f.isSelected() == false){
-                if(rbt_genero_m.isSelected() == false)
+                if(rbt_genero_m.isSelected() == false) {
                 JOptionPane.showMessageDialog(null, "Seleccione un genero");
                 return;
+                }
             }
             
             Personal personal = new Personal();
@@ -368,8 +371,11 @@ public class AppPersonal extends JFrame implements ActionListener {
             personal.setAp_materno(txt_apm.getText());
             personal.setNombre(txt_nombre.getText());
             
-            if(rbt_genero_f.isSelected()) personal.setGenero('f');
-            if(rbt_genero_m.isSelected()) personal.setGenero('m');
+            if(rbt_genero_f.isSelected()){
+                personal.setGenero('f');
+            }else if (rbt_genero_m.isSelected()){
+                personal.setGenero('m');
+            } 
             
             Date fec1 = dc_fn.getDate();
             long fec2 = fec1.getTime();
